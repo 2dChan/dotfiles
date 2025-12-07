@@ -1,7 +1,9 @@
 set -g fish_greeting ""
 
-# Macports
-set -gx PATH /opt/local/bin /opt/local/sbin $PATH
+if test (uname) = "Darwin"
+    # Macports
+    set -gx PATH /opt/local/bin /opt/local/sbin $PATH
+end
 
 # Dev
 set -gx EDITOR nvim
