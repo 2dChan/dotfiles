@@ -33,6 +33,15 @@ return {
 				lua = { "stylua" },
 				python = { "isort", "black" },
 				go = { "goimports", "gofmt" },
+
+				-- Frontend
+				typescript = { "prettier" },
+				typescriptreact = { "prettier" },
+				javascript = { "prettier" },
+				javascriptreact = { "prettier" },
+				scss = { "prettier" },
+				css = { "prettier" },
+				html = { "prettier" },
 			},
 		},
 	},
