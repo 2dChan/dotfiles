@@ -1,6 +1,6 @@
 return {
-  'anuvyklack/help-vsplit.nvim',
-  opts = {
-    always = true,
-  },
+	"anuvyklack/help-vsplit.nvim",
+	opts = {
+		always = true,
+	},
 }

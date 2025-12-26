@@ -1,3 +1,3 @@
-require 'options'
-require 'keymaps'
-require '.lazy'
+require("options")
+require("keymaps")
+require(".lazy")
