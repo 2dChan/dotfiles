@@ -47,6 +47,7 @@ ls
 make
 man
 mv
+port
 ps
 rename
 rg
