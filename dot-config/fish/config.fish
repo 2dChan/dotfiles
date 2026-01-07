@@ -16,7 +16,7 @@ if status is-interactive
         curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher
     end
 
-    set plugins (cat ./fish_plugins)
+    set plugins (cat ~/.config/fish/fish_plugins)
     for plugin in $plugins
         if not fisher list | grep -Fq $plugin
             echo "Install plugin: $plugin..."
