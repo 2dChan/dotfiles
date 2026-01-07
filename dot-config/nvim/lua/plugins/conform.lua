@@ -34,7 +34,7 @@ return {
 			python = { "isort", "black" },
 			go = { "goimports", "gofmt" },
 
-			-- Frontend
+			-- frontend
 			typescript = { "prettier" },
 			typescriptreact = { "prettier" },
 			javascript = { "prettier" },
