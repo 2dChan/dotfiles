@@ -36,12 +36,14 @@ return {
 
 			-- frontend
 			typescript = { "prettier" },
-			typescriptreact = { "prettier" },
 			javascript = { "prettier" },
-			javascriptreact = { "prettier" },
+			svelte = { "prettier" },
 			scss = { "prettier" },
 			css = { "prettier" },
 			html = { "prettier" },
+
+			-- etc
+			markdown = { "prettier" },
 		},
 	},
 }
