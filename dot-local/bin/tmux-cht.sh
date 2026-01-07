@@ -73,6 +73,6 @@ if [ $? -eq 0 ]; then
     query=$(echo "$query" | tr ' ' '+')
     tmux neww bash -c "echo \"curl cht.sh/$selected/$query/\"; curl cht.sh/$selected/$query; read -n1 -s"
 else
-    tmux neww bash -c "curl -s cht.sh/$selected~$query | less"
+    tmux neww bash -c "curl -s cht.sh/$selected~$query | less -R"
 fi
 
