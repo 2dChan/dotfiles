@@ -4,6 +4,7 @@ PACKAGES = fish git lsd neovim nodejs24 stow
 STOW_ARGS = --dotfiles -v
 
 stow:
+	mkdir -p ../.config
 	stow $(STOW_ARGS) .
 
 clean:
