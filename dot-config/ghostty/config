@@ -1,6 +1,10 @@
 font-family = "FiraCode Nerd Font Mono"
 font-size = 12
 
+macos-option-as-alt = true
+keybind = option+left=unbind
+keybind = option+right=unbind
+
 palette = 0=252423
 palette = 1=#ea6962
 palette = 2=#a9b665
