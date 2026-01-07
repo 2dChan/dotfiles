@@ -3,6 +3,8 @@ set -g fish_greeting ""
 if test (uname) = "Darwin"
     # Macports
     set -gx PATH /opt/local/bin /opt/local/sbin $PATH
+
+    set -U fish_user_paths ~/.local/bin $fish_user_paths
 end
 
 # Dev
