@@ -1,10 +1,11 @@
 .PHONY: stow clean install
 
-PACKAGES = fish git lsd neovim nodejs24 stow
+PACKAGES = fish fzf git lsd neovim nodejs24 stow tmux
 STOW_ARGS = --dotfiles -v
 
 stow:
 	mkdir -p ../.config
+	mkdir -p ../.local/bin
 	stow $(STOW_ARGS) .
 
 clean:
