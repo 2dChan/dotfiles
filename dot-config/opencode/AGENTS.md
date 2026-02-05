@@ -1,7 +1,21 @@
-# Language Settings for opencode
+# Настройки языка для opencode
 
-## Response Language
-- Always respond to user queries in Russian, unless specified otherwise.
+## Язык ответов
 
-## Code and Documentation Language
-- Write all code, documentation, and commit messages exclusively in English.
+- Всегда отвечайте на запросы пользователей на русском языке, если не указано иное.
+
+## Язык кода и документации
+
+- Пишите весь код, документацию и сообщения коммитов исключительно на английском языке.
+
+## Руководства по вкладу
+
+- Всегда смотрите и строго следуйте файлу CONTRIBUTING.md для руководств по проекту.
+
+## Версия Go
+
+- Для проектов на Golang используйте версию 1.24+ (можно использовать range для чисел, b.Loop() появился для тестирования).
+
+## Путь конфигурации
+
+- Вместо ~/.config смотрите в ~/.dotfiles/dot-config.
