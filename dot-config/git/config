@@ -1,3 +1,5 @@
 [user]
 	name = Junko Enoshima
 	email = 156222018+2dChan@users.noreply.github.com 
+[init]
+	defaultBranch = main
