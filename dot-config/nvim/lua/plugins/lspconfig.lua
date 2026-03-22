@@ -19,19 +19,13 @@ return {
 			"saghen/blink.cmp",
 		},
 		config = function()
-			-- Helper to create keymaps for LSP actions
 			local function lsp_map(keys, func, desc, mode, buf)
 				mode = mode or "n"
 				vim.keymap.set(mode, keys, func, { buffer = buf, desc = "LSP: " .. desc })
 			end
 
-			local function client_supports_method(client, method, bufnr)
-				return client:supports_method(method, bufnr)
-			end
-
-			-- Setup LSP attachment
 			vim.api.nvim_create_autocmd("LspAttach", {
-				group = vim.api.nvim_create_augroup("kickstart-lsp-attach", { clear = true }),
+				group = vim.api.nvim_create_augroup("lsp-attach", { clear = true }),
 				callback = function(event)
 					local buf = event.buf
 					local client = vim.lsp.get_client_by_id(event.data.client_id)
@@ -46,11 +40,8 @@ return {
 					lsp_map("gW", require("telescope.builtin").lsp_dynamic_workspace_symbols, "Open Workspace Symbols", "n", buf)
 					lsp_map("grt", require("telescope.builtin").lsp_type_definitions, "[G]oto [T]ype Definition", "n", buf)
 
-					-- Highlight references under cursor
-					if
-						client and client_supports_method(client, vim.lsp.protocol.Methods.textDocument_documentHighlight, buf)
-					then
-						local highlight_group = vim.api.nvim_create_augroup("kickstart-lsp-highlight", { clear = false })
+					if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_documentHighlight, buf) then
+						local highlight_group = vim.api.nvim_create_augroup("lsp-highlight", { clear = false })
 						vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
 							buffer = buf,
 							group = highlight_group,
@@ -62,17 +53,16 @@ return {
 							callback = vim.lsp.buf.clear_references,
 						})
 						vim.api.nvim_create_autocmd("LspDetach", {
-							group = vim.api.nvim_create_augroup("kickstart-lsp-detach", { clear = true }),
+							group = vim.api.nvim_create_augroup("lsp-detach", { clear = true }),
 							callback = function(ev)
 								vim.lsp.buf.clear_references()
-								vim.api.nvim_clear_autocmds({ group = "kickstart-lsp-highlight", buffer = ev.buf })
+								vim.api.nvim_clear_autocmds({ group = "lsp-highlight", buffer = ev.buf })
 							end,
 						})
 					end
 				end,
 			})
 
-			-- Diagnostic configuration
 			vim.diagnostic.config({
 				severity_sort = true,
 				float = { border = "rounded", source = "if_many" },
@@ -84,7 +74,7 @@ return {
 						[vim.diagnostic.severity.INFO] = "󰋽 ",
 						[vim.diagnostic.severity.HINT] = "󰌶 ",
 					},
-				} or {},
+				},
 				virtual_lines = {
 					source = "if_many",
 					spacing = 2,
@@ -94,10 +84,8 @@ return {
 				},
 			})
 
-			-- LSP capabilities (with blink.cmp)
 			local capabilities = require("blink.cmp").get_lsp_capabilities()
 
-			-- Configure language servers
 			local servers = {
 				lua_ls = {
 					settings = {
@@ -108,7 +96,6 @@ return {
 				},
 			}
 
-			-- Tools to ensure installed
 			local ensure_installed = vim.tbl_keys(servers)
 			vim.list_extend(ensure_installed, { "stylua" })
 			require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
