@@ -1,0 +1,7 @@
+{
+  "plugin": [
+    "opencode-claude-auth"
+  ],
+  "$schema": "https://opencode.ai/config.json"
+}
+
