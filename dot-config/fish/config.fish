@@ -10,6 +10,7 @@ end
 # Dev
 set -gx EDITOR nvim
 set -gx GOPATH $HOME/.local/go
+set -gx PATH $GOPATH/bin $PATH
 
 if status is-interactive
     alias ls='lsd --group-directories-first'
