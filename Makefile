@@ -1,6 +1,6 @@
 .PHONY: stow clean install add
 
-PACKAGES = fish fzf git lsd neovim nodejs24 stow tmux
+PACKAGES = fish fzf git lsd neovim nodejs24 stow tmux opencode
 STOW_ARGS = --dotfiles -v
 
 stow:
