@@ -1,6 +1,6 @@
 .PHONY: stow clean install add
 
-PACKAGES = fish fzf git lsd neovim nodejs24 stow tmux opencode tree-sitter-cli
+PACKAGES = fish fzf git lsd nodejs24 ripgrep neovim stow tmux opencode tree-sitter-cli
 STOW_ARGS = --dotfiles -v
 
 stow:
