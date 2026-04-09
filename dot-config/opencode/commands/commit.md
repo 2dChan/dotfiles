@@ -1,6 +1,7 @@
 ---
 description: Commit
 agent: build
+model: github-copilot/grok-code-fast-1
 ---
 
 Всегда общайтесь с пользователем на русском. Сообщения коммитов и описания кода всегда на английском.
