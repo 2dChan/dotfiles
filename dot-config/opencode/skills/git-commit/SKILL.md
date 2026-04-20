@@ -89,14 +89,15 @@ Analyze the diff to determine:
 - **Type**: What kind of change is this?
 - **Scope**: What area/module is affected?
 - **Description**: One-line summary of what changed (present tense, imperative mood, <72 chars)
+- **Body (optional)**: Add only when needed to explain why/impact; wrap each line at <=100 chars
 
 ### 4. Execute Commit
 
 ```bash
-# Single line
+# Single line (preferred when no extra context is needed)
 git commit -m "<type>[scope]: <description>"
 
-# Multi-line with body/footer
+# Multi-line with optional body/footer
 git commit -m "$(cat <<'EOF'
 <type>[scope]: <description>
 
@@ -114,6 +115,8 @@ EOF
 - Imperative mood: "fix bug" not "fixes bug"
 - Reference issues: `Closes #123`, `Refs #456`
 - Keep description under 72 characters
+- Body is optional; include it only when it adds useful context
+- If body is present, wrap each line to <=100 characters
 
 ## Git Safety Protocol
 
