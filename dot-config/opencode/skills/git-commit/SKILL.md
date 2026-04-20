@@ -91,13 +91,19 @@ Analyze the diff to determine:
 - **Description**: One-line summary of what changed (present tense, imperative mood, <72 chars)
 - **Body (optional)**: Add only when needed to explain why/impact; wrap each line at <=100 chars
 
+Body decision rules (do not skip):
+
+- If extra context is not needed, omit body entirely (no placeholder text, no empty body section).
+- If context is needed (why, impact, migration notes), include a body with concise lines.
+- Every non-empty body line must be <=100 characters.
+
 ### 4. Execute Commit
 
 ```bash
 # Single line (preferred when no extra context is needed)
 git commit -m "<type>[scope]: <description>"
 
-# Multi-line with optional body/footer
+# Multi-line (use only when body and/or footer is needed)
 git commit -m "$(cat <<'EOF'
 <type>[scope]: <description>
 
@@ -107,6 +113,15 @@ git commit -m "$(cat <<'EOF'
 EOF
 )"
 ```
+
+### 5. Validate Message Format (required)
+
+Before running `git commit`, verify:
+
+- If body is omitted, use a single-line message format.
+- If body is present, every non-empty body line is <=100 chars.
+- Body remains optional; never invent filler text just to have a body.
+- Footer is optional and separated from body by one blank line.
 
 ## Best Practices
 
