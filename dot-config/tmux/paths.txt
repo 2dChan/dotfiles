@@ -1,0 +1,3 @@
+$HOME/Documents/Projects/*
+$HOME/.dotfiles
+$HOME/Documents/Projects/trade-engine/*

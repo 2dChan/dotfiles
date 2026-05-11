@@ -1,9 +1,26 @@
 #!/bin/sh
 
+config_file="${XDG_CONFIG_HOME:-$HOME/.config}/tmux/paths.txt"
+
+emit_extra_paths() {
+    [ -f "$config_file" ] || return 0
+
+    while IFS= read -r p || [ -n "$p" ]; do
+        case "$p" in
+            "\$HOME/"*) p="$HOME/${p#\$HOME/}" ;;
+        esac
+
+        case "$p" in
+            */\*) p="${p%/*}"; [ -d "$p" ] && find "$p" -mindepth 1 -maxdepth 1 -type d ;;
+            *) [ -d "$p" ] && printf '%s\n' "$p" ;;
+        esac
+    done < "$config_file"
+}
+
 if [ $# -eq 1 ]; then
     selected=$1
 else
-    selected=$( (find ~/Documents/Projects -mindepth 1 -maxdepth 1 -type d; if [ -d ~/.dotfiles ]; then echo $HOME/.dotfiles; fi) | fzf )
+    selected=$(emit_extra_paths | awk '!seen[$0]++' | fzf)
 fi
 
 if [ -z "$selected" ]; then
