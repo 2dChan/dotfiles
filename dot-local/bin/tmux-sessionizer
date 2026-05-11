@@ -11,8 +11,13 @@ emit_extra_paths() {
         esac
 
         case "$p" in
-            */\*) p="${p%/*}"; [ -d "$p" ] && find "$p" -mindepth 1 -maxdepth 1 -type d ;;
-            *) [ -d "$p" ] && printf '%s\n' "$p" ;;
+            */\*)
+                p="${p%/*}"
+                [ -d "$p" ] && find "$p" -mindepth 1 -maxdepth 1 -type d ! -name '.*'
+                ;;
+            *)
+                [ -d "$p" ] && printf '%s\n' "$p"
+                ;;
         esac
     done < "$config_file"
 }
