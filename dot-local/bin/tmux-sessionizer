@@ -1,6 +1,7 @@
 #!/bin/sh
 
 config_file="${XDG_CONFIG_HOME:-$HOME/.config}/tmux/paths.txt"
+fzf_args="--popup down --border --border-label=Sessionizer --border-label-pos=3 --bind=one:accept"
 
 emit_extra_paths() {
     [ -f "$config_file" ] || return 0
@@ -25,7 +26,7 @@ emit_extra_paths() {
 if [ $# -eq 1 ]; then
     selected=$1
 else
-    selected=$(emit_extra_paths | awk '!seen[$0]++' | sort -fV | fzf)
+    selected=$(emit_extra_paths | awk '!seen[$0]++' | sort -fV | fzf $fzf_args)
 fi
 
 if [ -z "$selected" ]; then
