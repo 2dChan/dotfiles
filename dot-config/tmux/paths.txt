@@ -1,3 +1,6 @@
 $HOME/Documents/Projects/*
 $HOME/.dotfiles
 $HOME/Documents/Projects/trade-engine/*
+$HOME/Documents/Projects/remedy/apps/*
+$HOME/Documents/Projects/remedy/services/*
+$HOME/Documents/Projects/remedy/infra
