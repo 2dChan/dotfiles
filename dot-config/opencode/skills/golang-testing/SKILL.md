@@ -154,6 +154,43 @@ func TestParseConfig(t *testing.T) {
 }
 ```
 
+## Choosing Errorf vs Fatalf
+
+Default to `t.Error`/`t.Errorf` for independent value assertions. This lets a
+single test report multiple mismatches and makes table-driven tests easier to
+diagnose.
+
+Use `t.Fatal`/`t.Fatalf` only when continuing is unsafe or meaningless:
+
+- Setup failed and the test cannot run
+- A returned value is required for later assertions
+- A length check protects later indexing
+- A type assertion protects later use of the asserted value
+- An error must be non-nil before calling `err.Error()`
+- A helper cannot return a valid result after failure
+
+Do not use `t.Fatal`/`t.Fatalf` from goroutines, HTTP handlers, callbacks, or
+server code started by the test. Use `t.Error`/`t.Errorf`, return an error, or
+send the error through a channel and assert from the test goroutine.
+
+```go
+got, err := LoadConfig(path)
+if err != nil {
+    t.Fatalf("LoadConfig failed: %v", err) // Cannot use got safely.
+}
+
+if got.Host != "localhost" {
+    t.Errorf("Host = %q, want localhost", got.Host) // Independent assertion.
+}
+
+if len(got.Servers) != 2 {
+    t.Fatalf("len(Servers) = %d, want 2", len(got.Servers)) // Protects indexing.
+}
+if got.Servers[0].Name != "primary" {
+    t.Errorf("first server name = %q, want primary", got.Servers[0].Name)
+}
+```
+
 ## Subtests and Sub-benchmarks
 
 ### Organizing Related Tests
@@ -688,6 +725,8 @@ go test -count=10 ./...
 - Use `t.Parallel()` for independent tests
 - Clean up resources with `t.Cleanup()`
 - Use meaningful test names that describe the scenario
+- Prefer `t.Error`/`t.Errorf` for independent assertions
+- Reserve `t.Fatal`/`t.Fatalf` for setup failures, guards, and dependent checks
 
 **DON'T:**
 - Test private functions directly (test through public API)
@@ -695,6 +734,7 @@ go test -count=10 ./...
 - Ignore flaky tests (fix or remove them)
 - Mock everything (prefer integration tests when possible)
 - Skip error path testing
+- Use `t.Fatal`/`t.Fatalf` from goroutines, HTTP handlers, or callbacks
 
 ## Integration with CI/CD
 
