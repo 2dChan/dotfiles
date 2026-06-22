@@ -7,6 +7,7 @@ return {
 			mappings = true,
 		},
 		spec = {
+			{ "<leader>g", group = "[G]it" },
 			{ "<leader>s", group = "[S]earch" },
 		},
 	},
