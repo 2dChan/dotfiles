@@ -55,3 +55,10 @@ vim.opt.scrolloff = 10
 
 -- Confirm dialogs on unsaved changes
 vim.opt.confirm = true
+
+-- Filetype
+vim.filetype.add({
+	extension = {
+		h = "c",
+	},
+})
