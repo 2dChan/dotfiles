@@ -15,7 +15,10 @@ return {
 	keys = {
 		{ "<leader>gd", "<cmd>DiffviewOpen<CR>", desc = "[G]it [D]iff" },
 		{ "<leader>gh", "<cmd>DiffviewFileHistory %<CR>", desc = "[G]it File [H]istory" },
-		{ "<leader>gq", "<cmd>DiffviewClose<CR>", desc = "[G]it Diff [Q]uit" },
 	},
-	opts = {},
+	config = function()
+		require("diffview").setup()
+
+		vim.cmd([[cnoreabbrev <expr> q getcmdtype() == ':' && getcmdline() ==# 'q' && luaeval("require('diffview.lib').get_current_view() ~= nil") ? 'DiffviewClose' : 'q']])
+	end,
 }
