@@ -1,9 +1,16 @@
 .PHONY: stow clean install add
 
 PACKAGES = \
+	actionlint \
+	cocogitto \
+	curl \
 	fish \
 	fzf \
+	gh \
 	git \
+	go \
+	gopls \
+	golangci-lint \
 	lsd \
 	neovim \
 	nodejs24 \
