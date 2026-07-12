@@ -1,8 +1,8 @@
 ---
 description: Create one Conventional Commit from current changes
 agent: build
-model: openai/gpt-5.5
-variant: none
+model: openai/gpt-5.6-terra
+variant: medium
 ---
 
 Create exactly one logical git commit from the current workspace changes.
