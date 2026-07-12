@@ -3,9 +3,12 @@ description: Create one Conventional Commit from current changes
 agent: build
 model: openai/gpt-5.6-terra
 variant: medium
+subtask: true
 ---
 
 Create exactly one logical git commit from the current workspace changes.
+
+Additional user instructions (may be empty): $ARGUMENTS
 
 Follow this execution path in order. Do not invent extra validation steps, do
 not create branches, do not push, and do not amend unless the user explicitly
@@ -30,6 +33,7 @@ asks.
 Hard rules:
 
 - Stage only files that belong to the chosen logical change.
+- If additional user instructions specify a commit scope, treat it as a hard constraint.
 - Never stage secrets, private keys, credentials, `.env` files, or unrelated user changes.
 - Use one commit only.
 - If hooks fail, fix the hook failure and retry the commit normally.
