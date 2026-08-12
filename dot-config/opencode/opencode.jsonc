@@ -3,10 +3,12 @@
   "autoupdate": false,
   "permission": {
     "read": {
-      "*db.conf": "deny"
+      "*db.conf": "deny",
+      "*.passwd": "deny",
     },
     "edit": {
-      "*db.conf": "deny"
+      "*db.conf": "deny",
+      "*.passwd": "deny",
     }
   },
   "agent": {
