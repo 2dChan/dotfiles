@@ -30,6 +30,11 @@ return {
 				args = { "-st" },
 				stdin = true,
 			},
+			gotmplfmt = {
+				command = "gotmplfmt",
+				args = { "-w", "100" },
+				stdin = true,
+			},
 		},
 		formatters_by_ft = {
 			c = { "bsd_indent" },
@@ -41,7 +46,7 @@ return {
 			svelte = { "prettier" },
 			scss = { "prettier" },
 			css = { "prettier" },
-			html = { "prettier" },
+			html = { "gotmplfmt" },
 			markdown = { "prettier" },
 		},
 	},
