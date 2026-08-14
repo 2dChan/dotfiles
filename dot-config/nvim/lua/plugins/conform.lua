@@ -35,17 +35,22 @@ return {
 				args = { "-w", "100" },
 				stdin = true,
 			},
+			biome = {
+				args = { "format", "--stdin-file-path", "$FILENAME", "--indent-style", "tab", "--indent-width", "4" },
+				condition = function(_, ctx)
+					return not ctx.filename:match("%.min%.js$")
+				end,
+			},
 		},
 		formatters_by_ft = {
 			c = { "bsd_indent" },
 			lua = { "stylua" },
 			python = { "isort", "black" },
 			go = { "goimports", "gofmt" },
-			typescript = { "prettier" },
-			javascript = { "prettier" },
+			javascript = { "biome" },
 			svelte = { "prettier" },
 			scss = { "prettier" },
-			css = { "prettier" },
+			css = { "biome" },
 			html = { "gotmplfmt" },
 			markdown = { "prettier" },
 		},
