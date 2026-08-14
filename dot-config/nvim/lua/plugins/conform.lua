@@ -30,13 +30,7 @@ return {
 				args = { "-st" },
 				stdin = true,
 			},
-			gotmplfmt = {
-				command = "gotmplfmt",
-				args = { "-w", "100" },
-				stdin = true,
-			},
 			biome = {
-				args = { "format", "--stdin-file-path", "$FILENAME", "--indent-style", "tab", "--indent-width", "4" },
 				condition = function(_, ctx)
 					return not ctx.filename:match("%.min%.js$")
 				end,
@@ -45,14 +39,9 @@ return {
 		formatters_by_ft = {
 			c = { "bsd_indent" },
 			lua = { "stylua" },
-			python = { "isort", "black" },
 			go = { "goimports", "gofmt" },
 			javascript = { "biome" },
-			svelte = { "prettier" },
-			scss = { "prettier" },
 			css = { "biome" },
-			html = { "gotmplfmt" },
-			markdown = { "prettier" },
 		},
 	},
 }

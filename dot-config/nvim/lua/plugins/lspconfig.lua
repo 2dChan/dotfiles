@@ -98,7 +98,7 @@ return {
 			}
 
 			local ensure_installed = vim.tbl_keys(servers)
-			vim.list_extend(ensure_installed, { "biome", "black", "goimports", "isort", "prettier", "stylua" })
+			vim.list_extend(ensure_installed, { "biome", "goimports", "stylua" })
 			require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 
 			require("mason-lspconfig").setup({
