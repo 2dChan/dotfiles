@@ -35,13 +35,33 @@ return {
 					return not ctx.filename:match("%.min%.js$")
 				end,
 			},
+			biome_css = {
+				inherit = "biome",
+				append_args = {
+					"--css-formatter-indent-style",
+					"tab",
+					"--css-formatter-indent-width",
+					"4",
+				},
+			},
+			biome_javascript = {
+				inherit = "biome",
+				append_args = {
+					"--javascript-formatter-indent-style",
+					"tab",
+					"--javascript-formatter-indent-width",
+					"4",
+					"--javascript-formatter-line-width",
+					"100",
+				},
+			},
 		},
 		formatters_by_ft = {
 			c = { "bsd_indent" },
 			lua = { "stylua" },
 			go = { "goimports", "gofmt" },
-			javascript = { "biome" },
-			css = { "biome" },
+			javascript = { "biome_javascript" },
+			css = { "biome_css" },
 		},
 	},
 }
