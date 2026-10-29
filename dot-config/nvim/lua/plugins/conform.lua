@@ -27,7 +27,7 @@ return {
 		formatters = {
 			bsd_indent = {
 				command = "indent",
-				args = { "-st" },
+				args = { "-st", "-ts4", "-i4" },
 				stdin = true,
 			},
 			biome = {
