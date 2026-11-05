@@ -11,14 +11,6 @@
       "*.passwd": "deny",
     }
   },
-  "agent": {
-    "plan": {
-      "model": "openai/gpt-5.6-terra-fast"
-    },
-    "build": {
-      "model": "openai/gpt-5.6-terra-fast",
-    }
-  },
   "mcp": {
     "context7": {
       "type": "local",
